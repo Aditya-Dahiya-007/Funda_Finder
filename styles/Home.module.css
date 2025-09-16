@@ -1,0 +1,228 @@
+/* styles/Home.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Base & Background --- */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1e0033 0%, #3d1b59 50%, #6f3694 100%);
+  overflow-y: auto;
+}
+
+/* --- Header Section --- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 2.5rem;
+}
+
+.headerTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, #e4d7ff, #c299ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Main App Card --- */
+.mainCard {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  color: #fff;
+  text-align: center;
+}
+
+.description {
+  color: #d1c4e9;
+  margin-bottom: 2rem;
+}
+
+/* --- Form Elements --- */
+.textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 1rem;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #c299ff;
+  box-shadow: 0 0 15px rgba(194, 153, 255, 0.5);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.uploadButton,
+.submitButton {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.uploadButton {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.submitButton {
+  background: linear-gradient(90deg, #8e44ad, #c299ff);
+  color: #1e0033;
+}
+
+.uploadButton:hover,
+.submitButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Loading & Error --- */
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #c299ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  color: #ff8a80;
+  background: rgba(255, 0, 0, 0.2);
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+
+/* --- Results Card Animation & Styling --- */
+.resultsCard {
+  margin-top: 2.5rem;
+  text-align: left;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scoresContainer {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.5rem 0 2.5rem;
+}
+
+/* Circular Progress Bar */
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.progressCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(closest-side, #3d1b59 79%, transparent 80% 100%),
+              conic-gradient(#00ffab var(--value), #4a2d64 0); /* Green for good */
+  animation: progressAnimation 2s ease-out;
+}
+.suspicionCircle {
+  background: radial-gradient(closest-side, #3d1b59 79%, transparent 80% 100%),
+              conic-gradient(#ff6b6b var(--value), #4a2d64 0); /* Red for bad */
+}
+@keyframes progressAnimation {
+  from { --value: 0%; }
+}
+.scoreValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+.scoreLabel {
+  font-weight: 600;
+  color: #d1c4e9;
+}
+
+.reasoning, .tips, .sources {
+  margin-bottom: 1.5rem;
+}
+
+.resultsCard h3 {
+  color: #c299ff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tips ul, .sources ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tips li, .sources li {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.sources a {
+  color: #00ffab;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.sources a:hover {
+  color: #fff;
+}
