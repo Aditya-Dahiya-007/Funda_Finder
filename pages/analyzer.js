@@ -502,7 +502,7 @@ export default function Home() {
         </Head>
 
         <header className={styles.header}>
-          <Link href="/" className={styles.homeLink}>
+          <Link href="/intro" className={styles.homeLink}>
             <video 
               src="/logo.mp4" 
               className={styles.logoVideo} 

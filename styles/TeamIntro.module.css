@@ -1,0 +1,215 @@
+/* styles/TeamIntro.module.css */
+
+.pageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 4rem;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1400px;
+  align-items: center;
+}
+
+/* --- Left Side: Problem Statement --- */
+.problemStatement {
+  text-align: left;
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.problemStatement h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #c299ff;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.problemStatement p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #d1c4e9;
+}
+
+/* --- Right Side: Main Content --- */
+.mainSection {
+  text-align: center;
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap:0.25rem;
+}
+.logoVideo {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+}
+.title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #e4d7ff;
+}
+.title span {
+  font-size: 4rem;
+  font-weight: 1000;
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+/* --- Team Grid & Flipping Cards --- */
+.teamGrid {
+  display: flex; /* Changed from grid to flex */
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  justify-content: center; /* This is the key to centering the items */
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  max-width: 800px; /* Adjusted max-width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardContainer {
+  background-color: transparent;
+  flex: 0 0 200px; /* Gives each card a fixed width */
+  aspect-ratio: 1 / 1;
+  perspective: 1000px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.cardContainer:hover .card {
+  transform: rotateY(180deg);
+}
+
+.cardFront, .cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+}
+
+.cardFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  /* New Distinguishing Background */
+  background: linear-gradient(145deg, rgba(45, 30, 70, 0.6), rgba(25, 15, 40, 0.5));
+  backdrop-filter: blur(10px);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e4d7ff; /* Adjusted text color for new background */
+}
+
+.cardBack {
+  background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  color: #1e0033;
+  transform: rotateY(180deg);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- Button --- */
+.continueButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background: linear-gradient(90deg, #8e44ad, #c299ff);
+  color: white;
+}
+
+.continueButton:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.teamName {
+  font-size: 2.5rem; /* Increased from 2rem */
+  font-weight: 600;
+  color: #e4d7ff;
+}
+
+.presentsText {
+  font-size: 1.5rem; /* Increased from 1.25rem */
+  font-style: italic;
+  color: #a6c0fe;
+  margin-bottom: 40px;
+}
+
+/* This container holds the logo and app name side-by-side */
+.appNameContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.logoVideo {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+}
+
+.appName {
+  font-size: 4.5rem;
+  font-weight: 1000;
+  margin: 0;
+  line-height: 1.3;
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

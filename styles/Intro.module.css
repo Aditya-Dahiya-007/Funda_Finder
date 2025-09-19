@@ -129,3 +129,28 @@
     transform: translateX(0);
   }
 }
+/* Add this new style at the end of your file */
+.backButton {
+  position: fixed; /* Keeps it fixed in the viewport */
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10; /* Ensures it's on top of other content */
+  
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}

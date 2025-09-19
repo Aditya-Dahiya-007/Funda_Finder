@@ -1,60 +1,68 @@
-// pages/index.js
-
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Intro.module.css';
+import styles from '../styles/TeamIntro.module.css';
 
-export default function IntroPage() {
-  // The canvas background from the analyzer page is reused implicitly
-  // because its styles are global now.
-  
+// Team members and their roles
+const teamMembers = [
+  { name: 'Netransh Adhoj', role: 'Front-end Developer' },
+  { name: 'Aditya Dahiya', role: 'Architect' },
+  { name: 'Tisya Kaushik', role: 'Back-end Developer' },
+  { name: 'Aditi Nagpal', role: 'Content Strategist + UI/UX' },
+  { name: 'Subhashri Nath', role: 'UI/UX Designer' },
+];
+
+export default function TeamIntroPage() {
   return (
-    <>
+    <div className={styles.pageContainer}>
       <Head>
-        <title>Welcome to Credibility Lens</title>
+        <title>Team: Runtime Terrorsss - फंडा Finder</title>
       </Head>
 
-      <div className={styles.heroContainer}>
-        <div className={styles.header}>
-          <video 
-            src="/logo.mp4" 
-            className={styles.logoVideo} 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-          />
-          <h1 className={styles.title}>फंडा Finder</h1>
-        </div>
-        <p className={styles.subtitle}>
-          We roast misinformation — with receipts.
-        </p>
+      <main className={styles.mainLayout}>
+        <section className={styles.problemStatement}>
+          <h2>Problem Statement</h2>
+          <p>
+            Build an AI‑powered tool that detects potential misinformation and educates users on identifying credible, trustworthy content.
+          </p>
+        </section>
 
-        <div className={styles.factGrid}>
-          <div className={styles.factCard}>
-            <p className={styles.factStatistic} id={styles.factStatistic1}>Spot the Truth in Seconds</p>
-            <p className={styles.factDescription}>
-              No waiting, no guesswork—each post, article, or meme is checked and scored immediately, making it easy to judge reliability before hitting share.
-            </p>
-          </div>
-          <div className={styles.factCard}>
-            <p className={styles.factStatistic}>Warnings Where It Matters</p>
-            <p className={styles.factDescription}>
-              Our Suspicion Score highlights emotional triggers, urgency cues, and classic markers of misinformation hidden in the content.
-            </p>
-          </div>
-          <div className={styles.factCard}>
-            <p className={styles.factStatistic}>Analyze Anything—Text or Screenshots</p>
-            <p className={styles.factDescription}>
-              Just upload a screenshot of any website or social media post—our OCR extracts and checks the hidden text using the same AI engine. 
-            </p>
-          </div>
-        </div>
+        <section className={styles.mainSection}>
+          <header className={styles.header}>
+            <p className={styles.teamName}>Team: Runtime Terrorsss</p>
+            <p className={styles.presentsText}>presents</p>
+            <div className={styles.appNameContainer}>
+              <video 
+                src="/logo.mp4" 
+                className={styles.logoVideo} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+              />
+              <h1 className={styles.appName}>फंडा Finder</h1>
+            </div>
+          </header>
 
-        <Link href="/analyzer" className={styles.startButton}>
-          Start Analysing
-        </Link>
-      </div>
-    </>
+          <div className={styles.teamGrid}>
+            {teamMembers.map((member) => (
+              <div key={member.name} className={styles.cardContainer}>
+                <div className={styles.card}>
+                  <div className={styles.cardFront}>
+                    {member.name}
+                  </div>
+                  <div className={styles.cardBack}>
+                    {member.role}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <Link href="/intro" className={styles.continueButton}>
+            Continue to Website
+          </Link>
+        </section>
+      </main>
+    </div>
   );
 }

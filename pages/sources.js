@@ -70,7 +70,7 @@ export default function SourcesPage() {
   return (
     <div className={styles.pageContainer}>
       <Head>
-        <title>Verified Sources - Credibility Lens</title>
+        <title>Verified Sources - फंडा Finder</title>
       </Head>
 
       <header className={styles.header}>
