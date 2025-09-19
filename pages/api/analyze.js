@@ -51,20 +51,30 @@ function createPrompt(text) {
   return `
     Analyze the following text for misinformation, bias, emotional manipulation, and classic disinformation markers.
     Pay special attention to:
-    - **Emotional Triggers**: anger, fear, outrage, sympathy, or exaggerated emotional language.
-    - **Urgency Cues**: phrases like "act now," "don’t miss this," "they don’t want you to know," "share immediately."
-    - **Classic Misinformation Markers**: lack of credible sources, vague claims ("experts say"), overuse of ALL CAPS, excessive exclamation marks, conspiratorial framing, clickbait-style titles.
-    - **Source Mentions**: If the text references a domain, website, or publisher, evaluate its credibility. 
+    - Emotional Triggers: anger, fear, outrage, sympathy, or exaggerated emotional language.
+    - Urgency Cues: "act now," "share immediately," "they don’t want you to know," "before it’s too late."
+    - Classic Misinformation Markers: vague claims ("experts say"), lack of sources, excessive ALL CAPS, exclamation marks, conspiratorial framing, clickbait wording.
+    - Source Mentions: If a domain or publisher is included, evaluate its credibility.
       // --- SPECIAL RULE ---
-      If the text explicitly mentions a widely recognized, reputable news outlet (e.g., bbc.com, hindustantimes.com, Reuters, AP, The New York Times, etc.), you MUST assign a significantly higher credibilityScore to reflect that trustworthiness.
+      If the text explicitly mentions a widely recognized, reputable news outlet (e.g., bbc.com, hindustantimes.com, Reuters, AP, The New York Times, etc.), assign a higher credibilityScore and lower suspicionScore to reflect trustworthiness.
 
-    Provide your analysis strictly in a JSON object format.
-    The JSON object must contain:
-    - "credibilityScore": An integer between 0 (not credible) and 100 (highly credible).
-    - "suspicionScore": An integer between 0 (not suspicious) and 100 (highly suspicious).
-    - "reasoning": A brief, one-sentence explanation for the scores, mentioning detected emotional triggers, urgency cues, or misinformation markers if present. If a reputable source was identified, highlight it.
-    - "tips": An array of three short, actionable strings to help a user verify the information further.
-    - "alternativeSources": An array of JSON objects, each with "name" (string) and "url" (string) pointing to credible outlets covering the same or related topic.
+    // --- NEW RULES ---
+    1. credibilityScore + suspicionScore MUST always equal 100.
+    2. Reasoning must always explain the balance between credibility and suspicion.
+       - If suspicionScore > 0, mention specific triggers or markers detected.
+       - If credibilityScore is high, mention if reputable sources or factual tone were identified.
+
+    Provide your analysis strictly in JSON format:
+    {
+      "credibilityScore": <integer between 0-100>,
+      "suspicionScore": <integer between 0-100>,
+      "reasoning": "<one-sentence explanation referencing suspicion cues or credibility factors>",
+      "tips": ["<short tip>", "<short tip>", "<short tip>"],
+      "alternativeSources": [
+        { "name": "<credible outlet>", "url": "<url>" },
+        { "name": "<credible outlet>", "url": "<url>" }
+      ]
+    }
 
     Text to Analyze:
     ---
@@ -72,3 +82,4 @@ function createPrompt(text) {
     ---
   `;
 }
+
