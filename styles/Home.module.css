@@ -1,5 +1,18 @@
-/* styles/Home.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Add this new class at the top of your file */
+.canvasBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0; /* This is crucial to place it behind your content */
+}
+
+/* --- Keep all your existing styles below this line --- */
+
+
 
 /* --- Base & Background --- */
 .container {
@@ -10,17 +23,25 @@
   min-height: 100vh;
   padding: 2rem;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1e0033 0%, #3d1b59 50%, #6f3694 100%);
+  /* background: linear-gradient(135deg, #1e0033 0%, #3d1b59 50%, #6f3694 100%); */
   overflow-y: auto;
+  position: relative; /* ✅ add this */
+  z-index: 1;
 }
 
 /* --- Header Section --- */
-.header {
+/* .header {
   display: flex;
   align-items: center;
   gap: 1rem;
   color: white;
   padding: 1rem 0;
+} */
+.header {
+  /* This class is just for spacing */
+  padding: 1rem 0;
+  text-align: center;
+  transition: 0.6s ease-in-out;
 }
 
 .logo {
@@ -28,12 +49,14 @@
 }
 
 .headerTitle {
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   font-weight: 700;
   margin: 0;
   background: linear-gradient(90deg, #e4d7ff, #c299ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  /* Add this line to make the text glow */
+  text-shadow: 0 0 8px rgba(228, 215, 255, 0.7);
 }
 
 /* --- Main App Card --- */
@@ -225,4 +248,44 @@
 
 .sources a:hover {
   color: #fff;
+}
+
+/* Add these new styles at the end of styles/Home.module.css */
+
+.verifiedSourcesContainer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.verifiedSourcesButton {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid rgba(0, 255, 171, 0.4);
+  border-radius: 10px;
+  color: #00ffab;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.verifiedSourcesButton:hover {
+  background-color: rgba(0, 255, 171, 0.1);
+  border-color: rgba(0, 255, 171, 0.7);
+}
+.homeLink {
+  /* This style is the key: it aligns the icon and title */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+.header:hover{
+  scale:1.1;
+}
+.logoVideo {
+  width: 90px;
+  height: 90px;
+  /* Add this line for the glow effect */
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
 }

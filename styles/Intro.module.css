@@ -1,0 +1,131 @@
+/* styles/Intro.module.css */
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+.header {
+  display: flex;
+  align-items: center; /* Use 'center' to vertically align items of different types */
+  justify-content: center;
+  gap: 1.5rem;
+  animation: fadeInFromLeft 1.5s ease-out forwards;
+}
+
+.logoVideo {
+  width: 110px;  /* Adjust width as needed */
+  height: 110px; /* Adjust height as needed */
+  border-radius: 12px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+.title {
+  font-size: 6.5rem;
+  font-weight: 1000;
+  margin: 0;
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #d1c4e9;
+  max-width: 600px;
+  margin: 1rem 0 2.5rem;
+  line-height: 1.7;
+}
+
+.factGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin-bottom: 3rem;
+}
+
+.factCard {
+  background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+  /* background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%); */
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Stack items vertically */
+  border-radius: 35px;
+  padding-left: 2.5 rem;
+  padding-right: 2.5 rem;
+  padding-top: 0.8 rem;
+  padding-bottom: 0.8 rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: ease-in-out 0.6s;
+}
+
+.factStatistic {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff; /* Changed to white for better contrast */
+  margin-bottom: 1rem; /* Adjusted spacing */
+  padding-bottom: 1rem; /* Added spacing below text */
+  height:50%;
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* REMOVED the background-image and border-radius */
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); Add a subtle separator line */
+}
+
+.factDescription {
+  color: #ffffff; /* Changed to white for consistency and readability */
+  font-size: 0.95rem;
+  flex-grow: 1;
+  font-weight: bold;
+  /* Removed border-radius */
+}
+
+.startButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background: linear-gradient(90deg, #8e44ad, #c299ff);
+  color: white;
+}
+
+.startButton:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.factCard:hover{
+    scale: 1.1;
+}
+
+/* Add this entire block at the end of the file */
+@keyframes fadeInFromLeft {
+  /* Start much further to the left and completely transparent */
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  /* By the 60% mark, it's fully visible but still moving */
+  60% {
+    opacity: 1;
+  }
+  /* End at its final position */
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

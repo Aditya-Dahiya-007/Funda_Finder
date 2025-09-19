@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       model: "deepseek/deepseek-chat",
       messages: [{ role: "user", content: prompt }],
       response_format: { type: "json_object" },
-      max_tokens: 2048, // <-- ADD THIS LINE to limit the response size
+      max_tokens: 2048,
     });
     
     const analysis = JSON.parse(response.choices[0].message.content);
@@ -48,18 +48,23 @@ export default async function handler(req, res) {
 }
 
 function createPrompt(text) {
-  // This function remains the same
   return `
-    Analyze the following text, which could be from a screenshot or manually entered, for misinformation, bias, and emotional manipulation.
-    When analyzing, pay close attention to any URLs, website names, author names, or dates mentioned within the text itself, as these can provide clues about the original source or context.
+    Analyze the following text for misinformation, bias, emotional manipulation, and classic disinformation markers.
+    Pay special attention to:
+    - **Emotional Triggers**: anger, fear, outrage, sympathy, or exaggerated emotional language.
+    - **Urgency Cues**: phrases like "act now," "don’t miss this," "they don’t want you to know," "share immediately."
+    - **Classic Misinformation Markers**: lack of credible sources, vague claims ("experts say"), overuse of ALL CAPS, excessive exclamation marks, conspiratorial framing, clickbait-style titles.
+    - **Source Mentions**: If the text references a domain, website, or publisher, evaluate its credibility. 
+      // --- SPECIAL RULE ---
+      If the text explicitly mentions a widely recognized, reputable news outlet (e.g., bbc.com, hindustantimes.com, Reuters, AP, The New York Times, etc.), you MUST assign a significantly higher credibilityScore to reflect that trustworthiness.
 
     Provide your analysis strictly in a JSON object format.
-    The JSON object must contain the following keys and data types:
+    The JSON object must contain:
     - "credibilityScore": An integer between 0 (not credible) and 100 (highly credible).
     - "suspicionScore": An integer between 0 (not suspicious) and 100 (highly suspicious).
-    - "reasoning": A brief, one-sentence explanation for the scores, highlighting the key indicators found in the text.
-    - "tips": An array of three short, actionable strings that advise a user on how to verify the information.
-    - "alternativeSources": An array of JSON objects. Each object should have a "name" (string) and a "url" (string) of a credible source covering the same topic. If the topic is broad, provide general fact-checking websites like AP Fact Check or Reuters.
+    - "reasoning": A brief, one-sentence explanation for the scores, mentioning detected emotional triggers, urgency cues, or misinformation markers if present. If a reputable source was identified, highlight it.
+    - "tips": An array of three short, actionable strings to help a user verify the information further.
+    - "alternativeSources": An array of JSON objects, each with "name" (string) and "url" (string) pointing to credible outlets covering the same or related topic.
 
     Text to Analyze:
     ---
